@@ -14,7 +14,7 @@
 12. **Лиценз** - пълният MIT лиценз
 13. **Благодарности** към всички, които са помогнали
 
-Файлът е напълно съвместим с Markdown и ще изглежда добре както в GitHub, така и в други платформи.
+
 
 DEMO : https://comnsense.github.io/Projects/Halloween%20Website 
 SOURCE: [https://github.com/comnsense/Projects/](https://github.com/comnsense/Projects/tree/main/Halloween%20Website)
@@ -24,5 +24,6 @@ SOURCE: [https://github.com/comnsense/Projects/](https://github.com/comnsense/Pr
 
 
  
+
 
 
