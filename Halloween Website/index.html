@@ -1,0 +1,1293 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!--=============== FAVICON ===============-->
+    <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">
+    
+    <!--=============== BOXICONS ===============-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    
+    <!--=============== SWIPER CSS ===============--> 
+    <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
+    
+    <!--=============== GOOGLE FONTS ===============-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Poppins:wght@400;500;600;700&family=Rubik+Glitch&display=swap" rel="stylesheet">
+    
+    <!--=============== CSS ===============--> 
+    <link rel="stylesheet" href="assets/css/styles.css">
+
+    <style>
+        /*=============== GOOGLE FONTS & БАЗОВИ СТИЛОВЕ ===============*/
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #1a0b0b 0%, #2d1a1a 100%);
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .section {
+            padding: 5rem 0 2rem;
+        }
+
+        .section__title {
+            font-family: 'Creepster', cursive;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #ff8c00;
+            text-shadow: 4px 4px 0 #ff4500, 6px 6px 0 #000;
+            letter-spacing: 2px;
+        }
+
+        /*=============== ЕЗИКОВ ПРЕВКЛЮЧВАТЕЛ ===============*/
+        .language-switcher {
+            display: flex;
+            gap: 0.5rem;
+            margin-left: 1rem;
+        }
+
+        .lang-btn {
+            background: rgba(255, 140, 0, 0.2);
+            border: 2px solid #ff8c00;
+            color: #fff;
+            padding: 0.4rem 1rem;
+            border-radius: 2rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .lang-btn.active {
+            background: #ff8c00;
+            color: #1a0b0b;
+            box-shadow: 0 0 20px #ff8c00;
+        }
+
+        .lang-btn:hover {
+            background: #ff8c00;
+            color: #1a0b0b;
+            transform: scale(1.05);
+        }
+
+        /*=============== ШРИФТОВЕ ===============*/
+        h1, h2, h3, h4 {
+            font-family: 'Creepster', cursive;
+            letter-spacing: 2px;
+        }
+
+        .home__title {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            color: #ff8c00;
+            text-shadow: 3px 3px 0 #ff4500, 5px 5px 0 #000;
+        }
+
+        .home__subtitle {
+            font-family: 'Rubik Glitch', cursive;
+            font-size: 1.2rem;
+            color: #ff6b6b;
+        }
+
+        .category__title, .trick__title, .new__title {
+            font-family: 'Creepster', cursive;
+            font-size: 1.5rem;
+            margin: 1rem 0 0.5rem;
+        }
+
+        /*=============== АНИМАЦИИ ===============*/
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(2deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.08); filter: brightness(1.2); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        @keyframes flicker {
+            0% { opacity: 1; text-shadow: 0 0 10px #ff8c00; }
+            25% { opacity: 0.8; text-shadow: 0 0 20px #ff4500; }
+            50% { opacity: 1; text-shadow: 0 0 30px #ff8c00; }
+            75% { opacity: 0.9; text-shadow: 0 0 15px #ff4500; }
+            100% { opacity: 1; text-shadow: 0 0 10px #ff8c00; }
+        }
+        
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-8px) rotate(-2deg); }
+            50% { transform: translateX(8px) rotate(2deg); }
+            75% { transform: translateX(-4px) rotate(-1deg); }
+            100% { transform: translateX(0) rotate(0); }
+        }
+        
+        @keyframes glow {
+            0% { filter: drop-shadow(0 0 5px #ff8c00); }
+            50% { filter: drop-shadow(0 0 20px #ff4500) drop-shadow(0 0 30px #ff8c00); }
+            100% { filter: drop-shadow(0 0 5px #ff8c00); }
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-15px) scale(1.05); }
+        }
+        
+        @keyframes rotate-scale {
+            0% { transform: rotate(0) scale(1); }
+            50% { transform: rotate(8deg) scale(1.15); }
+            100% { transform: rotate(0) scale(1); }
+        }
+
+        @keyframes creepy-text {
+            0% { transform: skew(0deg); }
+            20% { transform: skew(5deg); }
+            40% { transform: skew(-5deg); }
+            60% { transform: skew(3deg); }
+            80% { transform: skew(-3deg); }
+            100% { transform: skew(0deg); }
+        }
+
+        /*=============== ПРИЛАГАНЕ НА АНИМАЦИИ ===============*/
+        .home__img {
+            animation: float 4s ease-in-out infinite;
+            filter: drop-shadow(0 10px 20px rgba(255, 69, 0, 0.5));
+        }
+        
+        .category__img {
+            animation: pulse 3s ease-in-out infinite;
+        }
+        
+        .trick__img {
+            animation: bounce 3s ease-in-out infinite;
+        }
+        
+        .new__img {
+            animation: glow 3s ease-in-out infinite;
+        }
+        
+        .discount__img {
+            animation: rotate-scale 5s ease-in-out infinite;
+        }
+        
+        .footer__img-one,
+        .footer__img-two {
+            animation: float 5s ease-in-out infinite;
+        }
+        
+        .footer__img-two {
+            animation-delay: 1.5s;
+        }
+        
+        .nav__logo-img {
+            animation: spin 12s linear infinite;
+        }
+        
+        .section__title {
+            animation: creepy-text 5s ease-in-out infinite;
+        }
+        
+        .home__title {
+            animation: flicker 3s ease-in-out infinite;
+        }
+        
+        .button {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+        .button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+        
+        .button:hover {
+            animation: pulse 1s ease-in-out;
+            transform: scale(1.08);
+            background: #ff4500;
+            box-shadow: 0 0 30px #ff4500;
+        }
+        
+        .trick__content:hover .trick__img {
+            animation: shake 0.6s ease-in-out;
+        }
+        
+        .category__data:hover .category__img {
+            animation: rotate-scale 0.8s ease-in-out;
+        }
+        
+        .new__content:hover {
+            transform: scale(1.08) translateY(-10px);
+            box-shadow: 0 20px 40px rgba(255, 69, 0, 0.4);
+            transition: all 0.4s ease;
+        }
+        
+        .scrollup {
+            animation: bounce 2.5s ease-in-out infinite;
+            background: #ff8c00;
+            border-radius: 50%;
+            padding: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /*=============== СТИЛОВЕ ЗА БУТОНИТЕ ===============*/
+        .button {
+            display: inline-block;
+            background: #ff8c00;
+            color: #1a0b0b;
+            padding: 1rem 2rem;
+            border-radius: 3rem;
+            font-weight: 600;
+            transition: all 0.4s ease;
+            border: 2px solid #ff4500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .button--ghost {
+            background: transparent;
+            border: 2px solid #ff8c00;
+            color: #ff8c00;
+        }
+
+        .button--ghost:hover {
+            background: #ff8c00;
+            color: #1a0b0b;
+        }
+
+        .button--link {
+            background: transparent;
+            border: none;
+            color: #ff8c00;
+        }
+
+        .button--link:hover {
+            background: transparent;
+            color: #ff4500;
+            box-shadow: none;
+        }
+
+        /*=============== НАВИГАЦИЯ ===============*/
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+        }
+
+        .nav__logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .nav__logo-img {
+            width: 2.5rem;
+        }
+
+        .nav__menu {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav__list {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav__link {
+            color: #fff;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .nav__link:hover {
+            color: #ff8c00;
+        }
+
+        .nav__close, .nav__toggle {
+            display: none;
+        }
+
+        /*=============== НАЧАЛО ===============*/
+        .home__content {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .home__group {
+            position: relative;
+        }
+
+        .home__details-img {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 1rem;
+            border-radius: 1rem;
+            border: 2px solid #ff8c00;
+        }
+
+        .home__details-title {
+            font-size: 1.2rem;
+            color: #ff8c00;
+        }
+
+        .home__buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        /*=============== КАТЕГОРИИ ===============*/
+        .category__container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .category__data {
+            text-align: center;
+            background: rgba(255, 140, 0, 0.1);
+            padding: 2rem;
+            border-radius: 2rem;
+            border: 2px solid #ff8c00;
+            backdrop-filter: blur(5px);
+            transition: 0.4s;
+        }
+
+        .category__img {
+            width: 150px;
+            margin-bottom: 1rem;
+        }
+
+        /*=============== ЗА НАС ===============*/
+        .about__container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about__img {
+            width: 100%;
+            animation: float 5s ease-in-out infinite;
+        }
+
+        /*=============== ПРОДУКТИ ===============*/
+        .trick__container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .trick__content {
+            background: rgba(255, 140, 0, 0.1);
+            padding: 2rem;
+            border-radius: 2rem;
+            border: 2px solid #ff8c00;
+            text-align: center;
+            position: relative;
+            backdrop-filter: blur(5px);
+            transition: 0.4s;
+        }
+
+        .trick__img {
+            width: 150px;
+            margin-bottom: 1rem;
+        }
+
+        .trick__price {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #ff8c00;
+            margin: 1rem 0;
+        }
+
+        .trick__button {
+            background: #ff8c00;
+            border: none;
+            padding: 1rem;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: 0.4s;
+        }
+
+        .trick__icon {
+            font-size: 1.5rem;
+            color: #1a0b0b;
+        }
+
+        /*=============== НАМАЛЕНИЕ ===============*/
+        .discount__container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+            align-items: center;
+            background: rgba(255, 69, 0, 0.2);
+            padding: 3rem;
+            border-radius: 3rem;
+            border: 3px solid #ff8c00;
+        }
+
+        .discount__title {
+            font-family: 'Creepster', cursive;
+            font-size: 2.5rem;
+            color: #ff8c00;
+            margin-bottom: 2rem;
+        }
+
+        /*=============== НОВО ===============*/
+        .new__container {
+            overflow: hidden;
+        }
+
+        .new__content {
+            background: rgba(255, 140, 0, 0.1);
+            padding: 2rem;
+            border-radius: 2rem;
+            border: 2px solid #ff8c00;
+            text-align: center;
+            position: relative;
+            backdrop-filter: blur(5px);
+        }
+
+        .new__tag {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: #ff4500;
+            color: #fff;
+            padding: 0.3rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .new__img {
+            width: 150px;
+            margin-bottom: 1rem;
+        }
+
+        .new__prices {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .new__price {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #ff8c00;
+        }
+
+        .new__discount {
+            font-size: 1rem;
+            color: #999;
+            text-decoration: line-through;
+        }
+
+        .new__button {
+            background: #ff8c00;
+            border: none;
+            padding: 1rem;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .new__icon {
+            font-size: 1.5rem;
+            color: #1a0b0b;
+        }
+
+        /*=============== БЮЛЕТИН ===============*/
+        .newsletter__container {
+            text-align: center;
+            background: rgba(255, 140, 0, 0.1);
+            padding: 3rem;
+            border-radius: 3rem;
+            border: 3px solid #ff8c00;
+        }
+
+        .newsletter__form {
+            display: flex;
+            gap: 1rem;
+            max-width: 500px;
+            margin: 2rem auto 0;
+        }
+
+        .newsletter__input {
+            flex: 1;
+            padding: 1rem;
+            border-radius: 3rem;
+            border: 2px solid #ff8c00;
+            background: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            font-size: 1rem;
+        }
+
+        .newsletter__input::placeholder {
+            color: #999;
+        }
+
+        /*=============== ФУТЪР ===============*/
+        .footer__container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            position: relative;
+        }
+
+        .footer__logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #fff;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .footer__logo-img {
+            width: 2rem;
+        }
+
+        .footer__social {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .footer__social-link {
+            color: #ff8c00;
+            font-size: 1.5rem;
+            transition: 0.3s;
+        }
+
+        .footer__social-link:hover {
+            color: #ff4500;
+            transform: translateY(-3px);
+        }
+
+        .footer__title {
+            font-family: 'Creepster', cursive;
+            font-size: 1.2rem;
+            color: #ff8c00;
+            margin-bottom: 1rem;
+        }
+
+        .footer__links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .footer__link {
+            color: #fff;
+            transition: 0.3s;
+        }
+
+        .footer__link:hover {
+            color: #ff8c00;
+            transform: translateX(5px);
+        }
+
+        .footer__copy {
+            display: block;
+            text-align: center;
+            margin-top: 3rem;
+            color: #999;
+        }
+
+        .footer__img-one, .footer__img-two {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 100px;
+        }
+
+        .footer__img-two {
+            right: 80px;
+            width: 70px;
+        }
+
+        /*=============== МЕДИЙНИ ЗАЯВКИ ===============*/
+        @media (max-width: 768px) {
+            .nav__menu {
+                position: fixed;
+                top: -100%;
+                left: 0;
+                width: 100%;
+                background: rgba(0, 0, 0, 0.9);
+                padding: 2rem;
+                border-radius: 0 0 2rem 2rem;
+                transition: 0.4s;
+            }
+
+            .nav__menu.show-menu {
+                top: 0;
+            }
+
+            .nav__list {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .nav__close {
+                display: block;
+                position: absolute;
+                top: 1rem;
+                right: 1rem;
+                font-size: 2rem;
+                color: #fff;
+                cursor: pointer;
+            }
+
+            .nav__toggle {
+                display: block;
+                font-size: 1.5rem;
+                color: #fff;
+                cursor: pointer;
+            }
+
+            .home__content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .home__buttons {
+                justify-content: center;
+            }
+
+            .category__container {
+                grid-template-columns: 1fr;
+            }
+
+            .about__container {
+                grid-template-columns: 1fr;
+            }
+
+            .trick__container {
+                grid-template-columns: 1fr;
+            }
+
+            .discount__container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .footer__container {
+                grid-template-columns: 1fr;
+            }
+
+            .language-switcher {
+                margin: 1rem 0;
+            }
+        }
+    </style>
+    
+    <title>Halloween-Candy.Website</title>
+</head>
+<body>
+    <!--==================== HEADER ====================-->
+    <header class="header" id="header">
+        <nav class="nav container">
+            <a href="#" class="nav__logo">
+                <img src="assets/img/logo.png" alt="Halloween Logo" class="nav__logo-img">
+                <span data-bg="Comnsense" data-en="Comnsense">Comnsense</span>
+            </a>
+
+            <div class="language-switcher">
+                <button class="lang-btn active" data-lang="bg">BG</button>
+                <button class="lang-btn" data-lang="en">EN</button>
+            </div>
+
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+                    <li class="nav__item">
+                        <a href="#home" class="nav__link active-link" data-bg="Начало" data-en="Home">Начало</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#about" class="nav__link" data-bg="Повече информация" data-en="About">Повече информация</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#trick" class="nav__link" data-bg="Бонбони" data-en="Candy">Бонбони</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#new" class="nav__link" data-bg="Ново!" data-en="New!">Ново!</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#" class="button button--ghost" data-bg="Поддръжка" data-en="Support">Поддръжка</a>
+                    </li>
+                </ul>
+
+                <div class="nav__close" id="nav-close">
+                    <i class='bx bx-x'></i>
+                </div>
+
+                <img src="assets/img/nav-img.png" alt="Navigation Decoration" class="nav__img">
+            </div>
+
+            <div class="nav__toggle" id="nav-toggle">
+                <i class='bx bx-grid-alt'></i>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main">
+        <!--==================== HOME ====================-->
+        <section class="home container" id="home">
+            <div class="swiper home-swiper">
+                <div class="swiper-wrapper">
+                    <!-- HOME SLIDER 1 -->
+                    <div class="swiper-slide">
+                        <div class="home__content grid">
+                            <div class="home__group">
+                                <img src="assets/img/home1-img.png" alt="Living Pumpkin" class="home__img">
+                                <div class="home__indicator"></div>
+                                <div class="home__details-img">
+                                    <h4 class="home__details-title" data-bg="Живата" data-en="The Living">Живата</h4>
+                                    <span class="home__details-subtitle" data-bg="Тиква" data-en="Pumpkin">Тиква</span>
+                                </div>
+                            </div>
+
+                            <div class="home__data">
+                                <h3 class="home__subtitle" data-bg="#1 Най-страшният ДУХ" data-en="#1 The Scariest GHOST">#1 Най-страшният ДУХ</h3>
+                                <h1 class="home__title" data-bg="УОО <br> ПАКОСТ ИЛИ <br> ЛАКОМСТВО!!" data-en="WHOO <br> TRICK OR <br> TREAT!!">УОО <br> ПАКОСТ ИЛИ <br> ЛАКОМСТВО!!</h1>
+                                <p class="home__description" data-bg="Здравейте, Аз съм Хост, но можеш да ми казваш 'Бу'. В момента се опитвам да се науча на нещо ново." data-en="Hello, I'm Host, but you can call me 'Boo'. Right now I'm trying to learn something new.">Здравейте, Аз съм Хост, но можеш да ми казваш "Бу". В момента се опитвам да се науча на нещо ново.</p>
+
+                                <div class="home__buttons">
+                                    <a href="#" class="button" data-bg="Резервирай Сега" data-en="Book Now">Резервирай Сега</a>
+                                    <a href="#" class="button--link button--flex" data-bg="Виж Записите" data-en="Watch Records">Виж Записите <i class='bx bx-right-arrow-alt button__icon'></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- HOME SLIDER 2 -->
+                    <div class="swiper-slide">
+                        <div class="home__content grid">
+                            <div class="home__group">
+                                <img src="assets/img/home2-img.png" alt="Adi and Brother" class="home__img">
+                                <div class="home__indicator"></div>
+                                <div class="home__details-img">
+                                    <h4 class="home__details-title" data-bg="Ади & брат му" data-en="Adi & his brother">Ади & брат му</h4>
+                                    <span class="home__details-subtitle" data-bg="Не могат да се опишат с думи!" data-en="Words cannot describe them!">Не могат да се опишат с думи!</span>
+                                </div>
+                            </div>
+
+                            <div class="home__data">
+                                <h3 class="home__subtitle" data-bg="#2 Най-доброто дуо" data-en="#2 Best duo">#2 Най-доброто дуо</h3>
+                                <h1 class="home__title" data-bg="ДОНЕСИ <br> МИ ПАМУКА <br> CANDY" data-en="BRING <br> ME COTTON <br> CANDY">ДОНЕСИ <br> МИ ПАМУКА <br> CANDY</h1>
+                                <p class="home__description" data-bg="Ади краде памучени сладки от своя брат и ги изяжда наведнъж, това гладно чудовище." data-en="Adi steals cotton candy from his brother and eats it all at once, that hungry monster.">Ади краде памучени сладки от своя брат и ги изяжда наведнъж, това гладно чудовище.</p>
+
+                                <div class="home__buttons">
+                                    <a href="#" class="button" data-bg="Запази СЕГА" data-en="Book NOW">Запази СЕГА</a>
+                                    <a href="#" class="button--link button--flex" data-bg="Виж записите" data-en="Watch records">Виж записите <i class='bx bx-right-arrow-alt button__icon'></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- HOME SLIDER 3 -->
+                    <div class="swiper-slide">
+                        <div class="home__content grid">
+                            <div class="home__group">
+                                <img src="assets/img/home3-img.png" alt="Captain Sam" class="home__img">
+                                <div class="home__indicator"></div>
+                                <div class="home__details-img">
+                                    <h4 class="home__details-title" data-bg="Капитан Сем" data-en="Captain Sam">Капитан Сем</h4>
+                                    <span class="home__details-subtitle" data-bg="Дух Ветеран Spooky" data-en="Spooky Veteran Ghost">Дух Ветеран Spooky</span>
+                                </div>
+                            </div>
+
+                            <div class="home__data">
+                                <h3 class="home__subtitle" data-bg="#3 Най-страшен дух" data-en="#3 Scariest ghost">#3 Най-страшен дух</h3>
+                                <h1 class="home__title" data-bg="RESPAWN <br> THE SPOOKY <br> СКЕЛЕТ" data-en="RESPAWN <br> THE SPOOKY <br> SKELETON">RESPAWN <br> THE SPOOKY <br> СКЕЛЕТ</h1>
+                                <p class="home__description" data-bg="Докато търсихме сладки кутрета, Капитан сем се завърна от трагична смърт заедно със своите сертифицирани Хогуардс умения, той обещава да е герой за всички духоподобни." data-en="While we were looking for sweet puppies, Captain Sam returned from a tragic death along with his certified Hogwarts skills, he promises to be a hero for all ghost-like.">Докато търсихме сладки кутрета, Капитан сем се завърна от трагична смърт заедно със своите сертифицирани Хогуардс умения, той обещава да е герой за всички духоподобни.</p>
+
+                                <div class="home__buttons">
+                                    <a href="#" class="button" data-bg="Запази СЕГА" data-en="Book NOW">Запази СЕГА</a>
+                                    <a href="#" class="button--link button--flex" data-bg="Виж записите" data-en="Watch records">Виж записите <i class='bx bx-right-arrow-alt button__icon'></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </section>
+        
+        <!--==================== CATEGORY ====================-->
+        <section class="section category">
+            <h2 class="section__title" data-bg="Любимо уплашване <br> Категория" data-en="Favorite spooking <br> Category">Любимо уплашване <br> Категория</h2>
+
+            <div class="category__container container grid">
+                <div class="category__data">
+                    <img src="assets/img/category1-img.png" alt="Ghosts" class="category__img">
+                    <h3 class="category__title" data-bg="Ghosts" data-en="Ghosts">Ghosts</h3>
+                    <p class="category__description" data-bg="Избери си най-страшния дух" data-en="Choose the scariest ghost">Избери си най-страшния дух</p>
+                </div>
+
+                <div class="category__data">
+                    <img src="assets/img/category2-img.png" alt="Pumpkins" class="category__img">
+                    <h3 class="category__title" data-bg="Тикви" data-en="Pumpkins">Тикви</h3>
+                    <p class="category__description" data-bg="Виж най-страшната от всички" data-en="See the scariest of all">Виж най-страшната от всички</p>
+                </div>
+
+                <div class="category__data">
+                    <img src="assets/img/category3-img.png" alt="Witch Hat" class="category__img">
+                    <h3 class="category__title" data-bg="Witch Hat" data-en="Witch Hat">Witch Hat</h3>
+                    <p class="category__description" data-bg="Избери най-стилната шапка, която съществува" data-en="Choose the coolest hat that exists">Избери най-стилната шапка, която съществува</p>
+                </div>
+            </div>
+        </section>
+
+        <!--==================== ABOUT ====================-->
+        <section class="section about" id="about">
+            <div class="about__container container grid">
+                <div class="about__data">
+                    <h2 class="section__title about__title" data-bg="Прочети повече за Halloween <br> Night" data-en="Read more about Halloween <br> Night">Прочети повече за Halloween <br> Night</h2>
+                    <p class="about__description" data-bg="Нощта на всички светии, или на всички мъртви, се празнува на 31-ви Октомври и е интернационален празник, идващ още от древността." data-en="All Saints' Night, or All Dead, is celebrated on October 31st and is an international holiday dating back to ancient times.">Нощта на всички светии, или на всички мъртви, се празнува на 31-ви Октомври и е интернационален празник, идващ още от древността.</p>
+                    <a href="#" class="button" data-bg="Виж още" data-en="See more">Виж още</a>
+                </div>
+
+                <img src="assets/img/about-img.png" alt="About Halloween" class="about__img">
+            </div>
+        </section>
+
+        <!--==================== TRICK OR TREAT ====================-->
+        <section class="section trick" id="trick">
+            <h2 class="section__title" data-bg="ПАКОСТ ИЛИ <br> ЛАКОМСТВО !!" data-en="TRICK OR <br> TREAT !!">ПАКОСТ ИЛИ <br> ЛАКОМСТВО !!</h2>
+
+            <div class="trick__container container grid">
+                <div class="trick__content">
+                    <img src="assets/img/trick-treat1-img.png" alt="Toffee Candy" class="trick__img">
+                    <h3 class="trick__title" data-bg="Toffee" data-en="Toffee">Toffee</h3>
+                    <span class="trick__subtitle" data-bg="Candy" data-en="Candy">Candy</span>
+                    <span class="trick__price">11.99 лв.</span>
+                    <button class="button trick__button">
+                        <i class='bx bx-cart-alt trick__icon'></i>
+                    </button>
+                </div>
+
+                <div class="trick__content">
+                    <img src="assets/img/trick-treat2-img.png" alt="Bone Accessory" class="trick__img">
+                    <h3 class="trick__title" data-bg="Кокал" data-en="Bone">Кокал</h3>
+                    <span class="trick__subtitle" data-bg="Accessory" data-en="Accessory">Accessory</span>
+                    <span class="trick__price">8.99 лв.</span>
+                    <button class="button trick__button">
+                        <i class='bx bx-cart-alt trick__icon'></i>
+                    </button>
+                </div>
+
+                <div class="trick__content">
+                    <img src="assets/img/trick-treat3-img.png" alt="Scarecrow" class="trick__img">
+                    <h3 class="trick__title" data-bg="Scarecrow" data-en="Scarecrow">Scarecrow</h3>
+                    <span class="trick__subtitle" data-bg="Accessory" data-en="Accessory">Accessory</span>
+                    <span class="trick__price">15.99 лв.</span>
+                    <button class="button trick__button">
+                        <i class='bx bx-cart-alt trick__icon'></i>
+                    </button>
+                </div>
+
+                <div class="trick__content">
+                    <img src="assets/img/trick-treat4-img.png" alt="Candy Cane" class="trick__img">
+                    <h3 class="trick__title" data-bg="Candy Cane" data-en="Candy Cane">Candy Cane</h3>
+                    <span class="trick__subtitle" data-bg="Candy" data-en="Candy">Candy</span>
+                    <span class="trick__price">7.99 лв.</span>
+                    <button class="button trick__button">
+                        <i class='bx bx-cart-alt trick__icon'></i>
+                    </button>
+                </div>
+
+                <div class="trick__content">
+                    <img src="assets/img/trick-treat5-img.png" alt="Pumpkin Candy" class="trick__img">
+                    <h3 class="trick__title" data-bg="Тиква" data-en="Pumpkin">Тиква</h3>
+                    <span class="trick__subtitle" data-bg="Candy" data-en="Candy">Candy</span>
+                    <span class="trick__price">19.99 лв.</span>
+                    <button class="button trick__button">
+                        <i class='bx bx-cart-alt trick__icon'></i>
+                    </button>
+                </div>
+
+                <div class="trick__content">
+                    <img src="assets/img/trick-treat6-img.png" alt="Ghost Accessory" class="trick__img">
+                    <h3 class="trick__title" data-bg="Духче" data-en="Ghost">Духче</h3>
+                    <span class="trick__subtitle" data-bg="Accessory" data-en="Accessory">Accessory</span>
+                    <span class="trick__price">17.99 лв.</span>
+                    <button class="button trick__button">
+                        <i class='bx bx-cart-alt trick__icon'></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+        
+        <!--==================== DISCOUNT ====================-->
+        <section class="section discount">
+            <div class="discount__container container grid">
+                <div class="discount__data">
+                    <h2 class="discount__title" data-bg="50% Намаление <br> На нашите нови продукти" data-en="50% Off <br> On our new products">50% Намаление <br> На нашите нови продукти</h2>
+                    <a href="#" class="button" data-bg="Виж" data-en="See">Виж</a>
+                </div>
+
+                <img src="assets/img/discount-img.png" alt="Discount Offer" class="discount__img">
+            </div>
+        </section>
+
+        <!--==================== NEW ARRIVALS ====================-->
+        <section class="section new" id="new">
+            <h2 class="section__title" data-bg="НОВО!" data-en="NEW!">НОВО!</h2>
+
+            <div class="new__container container">
+                <div class="swiper new-swiper">
+                    <div class="swiper-wrapper">
+                        <div class="new__content swiper-slide">
+                            <div class="new__tag" data-bg="Ново" data-en="New">Ново</div>
+                            <img src="assets/img/new1-img.png" alt="Haunted House" class="new__img">
+                            <h3 class="new__title" data-bg="Haunted House" data-en="Haunted House">Haunted House</h3>
+                            <span class="new__subtitle" data-bg="Accessory" data-en="Accessory">Accessory</span>
+                            <div class="new__prices">
+                                <span class="new__price">14.99 лв.</span>
+                                <span class="new__discount">29.99 лв.</span>
+                            </div>
+                            <button class="button new__button">
+                                <i class='bx bx-cart-alt new__icon'></i>
+                            </button>
+                        </div>
+    
+                        <div class="new__content swiper-slide">
+                            <div class="new__tag" data-bg="Ново" data-en="New">Ново</div>
+                            <img src="assets/img/new2-img.png" alt="Halloween Candle" class="new__img">
+                            <h3 class="new__title" data-bg="Halloween Candle" data-en="Halloween Candle">Halloween Candle</h3>
+                            <span class="new__subtitle" data-bg="Accessory" data-en="Accessory">Accessory</span>
+                            <div class="new__prices">
+                                <span class="new__price">11.99 лв.</span>
+                                <span class="new__discount">21.99 лв.</span>
+                            </div>
+                            <button class="button new__button">
+                                <i class='bx bx-cart-alt new__icon'></i>
+                            </button>
+                        </div>
+    
+                        <div class="new__content swiper-slide">
+                            <div class="new__tag" data-bg="Ново" data-en="New">Ново</div>
+                            <img src="assets/img/new3-img.png" alt="Witch Hat" class="new__img">
+                            <h3 class="new__title" data-bg="Вещерска Шапка" data-en="Witch Hat">Вещерска Шапка</h3>
+                            <span class="new__subtitle" data-bg="Accessory" data-en="Accessory">Accessory</span>
+                            <div class="new__prices">
+                                <span class="new__price">4.99 лв.</span>
+                                <span class="new__discount">9.99 лв.</span>
+                            </div>
+                            <button class="button new__button">
+                                <i class='bx bx-cart-alt new__icon'></i>
+                            </button>
+                        </div>
+    
+                        <div class="new__content swiper-slide">
+                            <div class="new__tag" data-bg="Ново" data-en="New">Ново</div>
+                            <img src="assets/img/new4-img.png" alt="Rip Accessory" class="new__img">
+                            <h3 class="new__title" data-bg="Rip" data-en="Rip">Rip</h3>
+                            <span class="new__subtitle" data-bg="Accessory" data-en="Accessory">Accessory</span>
+                            <div class="new__prices">
+                                <span class="new__price">24.99 лв.</span>
+                                <span class="new__discount">44.99 лв.</span>
+                            </div>
+                            <button class="button new__button">
+                                <i class='bx bx-cart-alt new__icon'></i>
+                            </button>
+                        </div>
+    
+                        <div class="new__content swiper-slide">
+                            <div class="new__tag" data-bg="Ново" data-en="New">Ново</div>
+                            <img src="assets/img/new5-img.png" alt="Crystal Ball" class="new__img">
+                            <h3 class="new__title" data-bg="Ужасяваща кристална топка" data-en="Horrifying crystal ball">Ужасяваща кристална топка</h3>
+                            <span class="new__subtitle" data-bg="Accessory" data-en="Accessory">Accessory</span>
+                            <div class="new__prices">
+                                <span class="new__price">5.99 лв.</span>
+                                <span class="new__discount">12.99 лв.</span>
+                            </div>
+                            <button class="button new__button">
+                                <i class='bx bx-cart-alt new__icon'></i>
+                            </button>
+                        </div>
+    
+                        <div class="new__content swiper-slide">
+                            <div class="new__tag" data-bg="Ново" data-en="New">Ново</div>
+                            <img src="assets/img/new6-img.png" alt="Witch Broom" class="new__img">
+                            <h3 class="new__title" data-bg="Witch Broom" data-en="Witch Broom">Witch Broom</h3>
+                            <span class="new__subtitle" data-bg="Accessory" data-en="Accessory">Accessory</span>
+                            <div class="new__prices">
+                                <span class="new__price">7.99 лв.</span>
+                                <span class="new__discount">14.99 лв.</span>
+                            </div>
+                            <button class="button new__button">
+                                <i class='bx bx-cart-alt new__icon'></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--==================== OUR NEWSLETTER ====================-->
+        <section class="section newsletter">
+            <div class="newsletter__container container">
+                <h2 class="section__title" data-bg="Новини" data-en="Newsletter">Новини</h2>
+                <p class="newsletter__description" data-bg="Промоции на нови продукти и разпродажба. Директно в твоята пощенска кутия." data-en="New product promotions and sale. Directly to your mailbox.">
+                    Промоции на нови продукти и разпродажба. Директно в твоята пощенска кутия.
+                </p>
+
+                <form action="#" class="newsletter__form">
+                    <input type="email" placeholder="Въведи своя имейл" class="newsletter__input" data-bg="Въведи своя имейл" data-en="Enter your email" required>
+                    <button class="button" type="submit" data-bg="Абонирай се" data-en="Subscribe">
+                        Абонирай се
+                    </button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!--==================== FOOTER ====================-->
+    <footer class="footer section">
+        <div class="footer__container container grid">
+            <div class="footer__content">
+                <a href="#" class="footer__logo">
+                    <img src="assets/img/logo.png" alt="Halloween Logo" class="footer__logo-img">
+                    <span data-bg="Halloween" data-en="Halloween">Halloween</span>
+                </a>
+
+                <p class="footer__description" data-bg="Наслади се на най-страшната нощ в живота си." data-en="Enjoy the scariest night of your life.">Наслади се на най-страшната нощ в живота си.</p>
+                
+                <div class="footer__social">
+                    <a href="https://www.facebook.com/" target="_blank" rel="noopener" class="footer__social-link">
+                        <i class='bx bxl-facebook'></i>
+                    </a>
+                    <a href="https://www.instagram.com/" target="_blank" rel="noopener" class="footer__social-link">
+                        <i class='bx bxl-instagram-alt'></i>
+                    </a>
+                    <a href="https://twitter.com/" target="_blank" rel="noopener" class="footer__social-link">
+                        <i class='bx bxl-twitter'></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer__content">
+                <h3 class="footer__title" data-bg="За нас" data-en="About Us">За нас</h3>
+                
+                <ul class="footer__links">
+                    <li><a href="#" class="footer__link" data-bg="За нас" data-en="About Us">За нас</a></li>
+                    <li><a href="#" class="footer__link" data-bg="Какво предлагаме?" data-en="What we offer?">Какво предлагаме?</a></li>
+                    <li><a href="#" class="footer__link" data-bg="Новини" data-en="News">Новини</a></li>
+                </ul>
+            </div>
+
+            <div class="footer__content">
+                <h3 class="footer__title" data-bg="Услуги" data-en="Services">Услуги</h3>
+                
+                <ul class="footer__links">
+                    <li><a href="#" class="footer__link" data-bg="Цени" data-en="Prices">Цени</a></li>
+                    <li><a href="#" class="footer__link" data-bg="Намаления" data-en="Discounts">Намаления</a></li>
+                    <li><a href="#" class="footer__link" data-bg="Доставка" data-en="Delivery">Доставка</a></li>
+                </ul>
+            </div>
+
+            <div class="footer__content">
+                <h3 class="footer__title" data-bg="Нашата компания" data-en="Our Company">Нашата компания</h3>
+                
+                <ul class="footer__links">
+                    <li><a href="#" class="footer__link" data-bg="Блог" data-en="Blog">Блог</a></li>
+                    <li><a href="#" class="footer__link" data-bg="За Нас" data-en="About Us">За Нас</a></li>
+                    <li><a href="#" class="footer__link" data-bg="Нашата Мисия" data-en="Our Mission">Нашата Мисия</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <span class="footer__copy">&#169; Comnsense</span>
+
+        <img src="assets/img/footer1-img.png" alt="Footer Decoration 1" class="footer__img-one">
+        <img src="assets/img/footer2-img.png" alt="Footer Decoration 2" class="footer__img-two">
+    </footer>
+
+    <!--=============== SCROLL UP ===============-->
+    <a href="#" class="scrollup" id="scroll-up">
+        <i class='bx bx-up-arrow-alt scrollup__icon'></i>
+    </a>
+    
+    <!--=============== SCROLL REVEAL ===============-->
+    <script src="assets/js/scrollreveal.min.js"></script>
+
+    <!--=============== SWIPER JS ===============-->
+    <script src="assets/js/swiper-bundle.min.js"></script>
+    
+    <!--=============== MAIN JS ===============-->
+    <script src="assets/js/main.js"></script>
+
+    <!-- Езиков превключвател и анимации -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Езиков превключвател
+            const langButtons = document.querySelectorAll('.lang-btn');
+            const elementsToTranslate = document.querySelectorAll('[data-bg][data-en]');
+            
+            let currentLang = 'bg';
+
+            function setLanguage(lang) {
+                currentLang = lang;
+                
+                elementsToTranslate.forEach(element => {
+                    const translation = element.getAttribute(`data-${lang}`);
+                    if (translation) {
+                        if (element.tagName === 'INPUT') {
+                            element.placeholder = translation;
+                        } else {
+                            element.innerHTML = translation;
+                        }
+                    }
+                });
+
+                // Актуализиране на активния бутон
+                langButtons.forEach(btn => {
+                    if (btn.dataset.lang === lang) {
+                        btn.classList.add('active');
+                    } else {
+                        btn.classList.remove('active');
+                    }
+                });
+
+                // Промяна на езика на HTML тага
+                document.documentElement.lang = lang === 'bg' ? 'bg' : 'en';
+            }
+
+            langButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    setLanguage(btn.dataset.lang);
+                });
+            });
+
+            // Проверка дали анимациите работят
+            console.log('Анимациите са активирани!');
+            
+            // Добавяне на клас за анимация при скрол
+            const animateOnScroll = function() {
+                const elements = document.querySelectorAll('.category__data, .trick__content, .new__content');
+                
+                elements.forEach(element => {
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const screenPosition = window.innerHeight / 1.3;
+                    
+                    if (elementPosition < screenPosition) {
+                        element.style.opacity = '1';
+                        element.style.transform = 'translateY(0)';
+                    }
+                });
+            };
+            
+            // Инициализиране на начални стилове за анимация при скрол
+            const elementsToAnimate = document.querySelectorAll('.category__data, .trick__content, .new__content');
+            elementsToAnimate.forEach(element => {
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(20px)';
+                element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            });
+            
+            // Първоначално активиране
+            setTimeout(animateOnScroll, 100);
+            
+            // При скрол
+            window.addEventListener('scroll', animateOnScroll);
+            
+            // Мобилна навигация
+            const navToggle = document.getElementById('nav-toggle');
+            const navMenu = document.getElementById('nav-menu');
+            const navClose = document.getElementById('nav-close');
+
+            if (navToggle) {
+                navToggle.addEventListener('click', () => {
+                    navMenu.classList.add('show-menu');
+                });
+            }
+
+            if (navClose) {
+                navClose.addEventListener('click', () => {
+                    navMenu.classList.remove('show-menu');
+                });
+            }
+
+            // Затваряне на менюто при клик на линк
+            const navLinks = document.querySelectorAll('.nav__link');
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    navMenu.classList.remove('show-menu');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
