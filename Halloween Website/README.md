@@ -12,8 +12,9 @@
 
 
 
-DEMO : https://comnsense.github.io/Projects/Halloween%20Website//index# <br></br>
+DEMO : https://comnsense.github.io/Projects/Halloween%20Website 
 SOURCE: https://github.com/comnsense/Projects/
  
 ![scrennshot1](https://github.com/comnsense/Web-Design-Final/assets/111774303/fb464e4c-a91f-4b3b-b03e-1b5a995c7482)
+
 
