@@ -13,8 +13,10 @@
 
 
 DEMO : https://comnsense.github.io/Projects/Halloween%20Website 
-SOURCE: https://github.com/comnsense/Projects/
+SOURCE: [https://github.com/comnsense/Projects/](https://github.com/comnsense/Projects/tree/main/Halloween%20Website)
  
-![scrennshot1](https://github.com/comnsense/Web-Design-Final/assets/111774303/fb464e4c-a91f-4b3b-b03e-1b5a995c7482)
+!([Halloween Website/Halloween Website.jpg](https://github.com/comnsense/Projects/blob/5210a34695f0471cb7d11df93b20c81118882242/Halloween%20Website/Halloween%20Website.jpg)
+
+
 
 
