@@ -1,5 +1,4 @@
 
-Този `README.md` файл включва:
 
 1. **Заглавие** с емотикони и визуална привлекателност
 2. **Демо линкове** - директни връзки към живия сайт
@@ -25,4 +24,5 @@ SOURCE: [https://github.com/comnsense/Projects/](https://github.com/comnsense/Pr
 
 
  
+
 
