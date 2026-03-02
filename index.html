@@ -6,16 +6,16 @@
     <title>Projects 2022-26 | comnsense</title>
     
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
 
     <!-- Open Graph / Social Media Meta Tags -->
-    <meta property="og:title" content="Projects 2022-26" />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://comnsense.github.io/projects" />
-    <meta property="og:description" content="Web development projects and applications" />
+    <meta property="og:title" content="Projects 2022-26">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://comnsense.github.io/projects">
+    <meta property="og:description" content="Web development projects and applications">
     
     <!-- Canonical Link -->
-    <link rel="canonical" href="https://comnsense.github.io/projects" />
+    <link rel="canonical" href="https://comnsense.github.io/projects">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,689 +27,26 @@
     
     <!-- Material Icons for fallback -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-    <style>
-        /* CSS Variables for consistent theming */
-        :root {
-            --primary-bg: #0a0c14;
-            --secondary-bg: #1a1f2e;
-            --accent-green: #8bc34a;
-            --accent-blue: #42a5f5;
-            --text-light: #ffffff;
-            --text-dark: #1D263B;
-            --terminal-bg: rgba(25, 40, 50, 0.3);
-            --card-bg: rgba(20, 30, 40, 0.4);
-            --border-color: #2a4a5a;
-            --hover-color: #a5d6a5;
-            --header-bg: rgba(10, 15, 25, 0.95);
-            --text-primary: #ffffff;
-        }
-
-        /* Light theme */
-        [data-theme="light"] {
-            --primary-bg: #f8f9fa;
-            --secondary-bg: #ffffff;
-            --text-light: #1a1a2e;
-            --text-dark: #16213e;
-            --accent-green: #2e7d32;
-            --accent-blue: #1976d2;
-            --border-color: #bbdefb;
-            --card-bg: rgba(200, 220, 240, 0.3);
-            --header-bg: rgba(255, 255, 255, 0.95);
-            --text-primary: #1a1a2e;
-        }
-
-        /* Global Reset and Base Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Nunito', sans-serif;
-            font-size: 16px;
-            font-weight: 400;
-            line-height: 1.6;
-            color: var(--text-light);
-            background: var(--primary-bg);
-            min-height: 100vh;
-        }
-
-        /* Typography */
-        h1, h2, h3, h4, h5 {
-            font-family: 'Fira Mono', monospace;
-            font-weight: 700;
-            letter-spacing: 0.05em;
-        }
-
-        h2 {
-            font-size: 2em;
-            margin-bottom: 30px;
-            color: var(--text-light);
-        }
-
-        h3 {
-            font-size: 1.4em;
-            margin-bottom: 15px;
-            color: var(--text-light);
-        }
-
-        /* Links */
-        a {
-            text-decoration: none;
-            color: inherit;
-            transition: all 0.3s ease;
-        }
-
-        .green {
-            color: var(--accent-green);
-            font-weight: 600;
-        }
-
-        .hyperlink {
-            color: var(--accent-blue);
-            text-decoration: underline;
-            transition: color 0.3s ease;
-        }
-
-        .hyperlink:hover {
-            color: var(--hover-color);
-        }
-
-        /* Header Styles */
-        .header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 30px;
-            background: var(--header-bg);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            border-bottom: 2px solid var(--accent-green);
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
-        }
-
-        .header-logo {
-            font-size: 1.5em;
-            font-weight: 700;
-            letter-spacing: 0.1em;
-            color: var(--accent-green);
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease;
-        }
-
-        .header-logo:hover {
-            transform: scale(1.05);
-            color: var(--hover-color);
-        }
-
-        .nav {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .toggle {
-            display: none;
-            font-size: 1.8em;
-            cursor: pointer;
-            color: var(--text-light);
-            transition: color 0.3s ease;
-        }
-
-        .toggle:hover {
-            color: var(--accent-green);
-        }
-
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 30px;
-        }
-
-        .nav-item a {
-            color: var(--text-light);
-            font-weight: 600;
-            letter-spacing: 0.05em;
-            padding: 8px 0;
-            border-bottom: 2px solid transparent;
-            transition: all 0.3s ease;
-        }
-
-        .nav-item a:hover {
-            color: var(--accent-green);
-            border-bottom-color: var(--accent-green);
-        }
-
-        /* Theme Preview Circles */
-        .theme-preview {
-            display: flex;
-            gap: 10px;
-            margin-left: 20px;
-        }
-        
-        .color-dot {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            cursor: pointer;
-            border: 2px solid transparent;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-        }
-        
-        .color-dot:hover {
-            transform: scale(1.2);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-        }
-        
-        .color-dot.active {
-            border-color: var(--accent-green);
-            transform: scale(1.1);
-        }
-        
-        .dot-dark { background-color: #0a0c14; }
-        .dot-light { background-color: #f8f9fa; border: 2px solid #666; }
-
-        /* Main Container */
-        .main-container {
-            max-width: 1400px;
-            margin: 100px auto 50px;
-            padding: 0 30px;
-        }
-
-        /* Sections */
-        section {
-            margin-bottom: 80px;
-        }
-
-        .section-description {
-            max-width: 900px;
-            margin: 20px auto;
-            text-align: center;
-            font-size: 1.1em;
-            line-height: 1.8;
-            color: var(--text-light);
-            opacity: 0.9;
-        }
-
-        /* Projects Grid */
-        .card-title {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 40px;
-        }
-
-        .card-title img {
-            width: 30px;
-            height: 30px;
-            filter: brightness(0) invert(1);
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .project-card {
-            background: var(--card-bg);
-            backdrop-filter: blur(5px);
-            border-radius: 15px;
-            overflow: hidden;
-            border: 1px solid var(--border-color);
-            transition: all 0.3s ease;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            border-color: var(--accent-green);
-        }
-
-        .project-preview-img {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-            border-bottom: 2px solid var(--border-color);
-            background-color: var(--secondary-bg);
-        }
-
-        .image-fallback {
-            width: 100%;
-            height: 180px;
-            background: linear-gradient(135deg, var(--accent-green) 0%, var(--accent-blue) 100%);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            border-bottom: 2px solid var(--border-color);
-        }
-        
-        .image-fallback i {
-            font-size: 3em;
-            color: var(--text-dark);
-        }
-
-        .card-info {
-            padding: 25px;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .project-title {
-            color: var(--accent-green);
-            margin-bottom: 15px;
-            font-size: 1.3em;
-            line-height: 1.4;
-        }
-
-        .project-skills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 15px;
-        }
-
-        .skill-tag {
-            background: rgba(57, 121, 146, 0.3);
-            border: 1px solid var(--border-color);
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.9em;
-            color: var(--text-light);
-        }
-
-        .item-details {
-            margin: 15px 0;
-            color: var(--text-light);
-            opacity: 0.9;
-            flex: 1;
-        }
-
-        .item-details ul {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .item-details li {
-            margin-bottom: 8px;
-            position: relative;
-            padding-left: 20px;
-        }
-
-        .item-details li::before {
-            content: "•";
-            color: var(--accent-green);
-            position: absolute;
-            left: 0;
-            font-size: 1.2em;
-        }
-
-        .project-links {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-            flex-wrap: wrap;
-        }
-
-        .project-links a {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--accent-green);
-            font-weight: 600;
-            padding: 8px 16px;
-            border: 1px solid var(--accent-green);
-            border-radius: 25px;
-            transition: all 0.3s ease;
-            font-size: 0.95em;
-        }
-
-        .project-links a:hover {
-            background: var(--accent-green);
-            color: var(--text-dark);
-        }
-
-        .project-links i {
-            font-size: 1.1em;
-        }
-
-        /* Tech Stack Section */
-        #tech-stack {
-            width: 100%;
-            max-width: 1200px;
-            margin: 60px auto;
-            padding: 0 25px;
-            text-align: center;
-        }
-        
-        #tech-stack h2 {
-            font-size: 1.75em;
-            font-weight: 700;
-            margin-bottom: 40px;
-            font-family: 'Fira Mono', monospace;
-            color: var(--text-light);
-        }
-        
-        .tech-stack-container {
-            margin: 0 auto;
-            max-width: 1000px;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
-            gap: 12px;
-        }
-        
-        .skill {
-            border-radius: 12px;
-            margin: 3px;
-            border: 2px solid var(--accent-green);
-            padding: 8px 15px;
-            display: flex;
-            align-items: center;
-            background: var(--card-bg);
-            backdrop-filter: blur(5px);
-            transition: all 0.3s ease;
-        }
-        
-        .skill:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            border-color: var(--accent-blue);
-        }
-        
-        .skill span {
-            margin-left: 8px;
-            color: var(--text-light);
-            font-weight: 600;
-            font-size: 0.9em;
-        }
-        
-        .skill img {
-            width: 24px;
-            height: 24px;
-            filter: brightness(0.95);
-        }
-
-        /* Fallback for missing icons */
-        .skill .material-icons {
-            font-size: 22px;
-            color: var(--accent-green);
-            margin-right: 5px;
-        }
-
-        /* Terminal Container */
-        .terminal-container {
-            max-width: 900px;
-            margin: 60px auto;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .terminal-header {
-            background: rgba(0, 0, 0, 0.4);
-            padding: 12px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 2px solid var(--accent-green);
-        }
-
-        #terminal-title {
-            font-family: 'Fira Code', monospace;
-            color: var(--accent-green);
-            font-weight: 500;
-            font-size: 1.1em;
-        }
-
-        .right-side-buttons i {
-            color: rgba(255, 255, 255, 0.7);
-            margin-left: 12px;
-            cursor: pointer;
-            transition: color 0.3s ease;
-        }
-
-        .right-side-buttons i:hover {
-            color: var(--accent-green);
-        }
-
-        .terminal-window {
-            background: var(--terminal-bg);
-            backdrop-filter: blur(5px);
-            padding: 30px;
-            border: 1px solid var(--border-color);
-            border-top: none;
-        }
-
-        .statement {
-            margin-bottom: 25px;
-        }
-
-        .input {
-            font-family: 'Fira Code', monospace;
-            color: var(--text-light);
-            margin-bottom: 5px;
-            font-size: 1em;
-        }
-
-        .input::before {
-            content: "> ";
-            color: var(--accent-green);
-            font-weight: 700;
-        }
-
-        .return {
-            font-family: 'Fira Code', monospace;
-            color: var(--accent-green);
-            padding-left: 25px;
-            font-size: 0.95em;
-        }
-
-        .bottom {
-            display: flex;
-            align-items: center;
-        }
-
-        .bottom span {
-            display: inline-block;
-            width: 12px;
-            height: 24px;
-            background: var(--accent-green);
-            animation: blink 1s infinite;
-        }
-
-        @keyframes blink {
-            0%, 50% { opacity: 1; }
-            51%, 100% { opacity: 0; }
-        }
-
-        /* Footer */
-        .footer-container {
-            margin-top: 80px;
-            padding: 50px 30px 30px;
-            background: rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(5px);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 30px;
-            border-top: 2px solid var(--accent-green);
-        }
-
-        .footer-column {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 25px;
-            list-style: none;
-            margin: 20px 0;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .social-link a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 50px;
-            height: 50px;
-            border: 2px solid var(--accent-green);
-            border-radius: 50%;
-            transition: all 0.3s ease;
-        }
-
-        .social-link a:hover {
-            background: var(--accent-green);
-            transform: translateY(-3px);
-        }
-
-        .social-link a:hover i {
-            color: var(--text-dark);
-        }
-
-        .social-link i {
-            font-size: 1.4em;
-            color: var(--text-light);
-        }
-
-        .copyright {
-            font-size: 0.95em;
-            opacity: 0.8;
-            margin-top: 15px;
-            color: var(--text-light);
-        }
-
-        .copyright i {
-            margin-right: 5px;
-            color: var(--accent-green);
-        }
-
-        /* Responsive Design */
-        @media only screen and (max-width: 768px) {
-            .header {
-                padding: 12px 20px;
-            }
-
-            .header-logo {
-                font-size: 1.2em;
-            }
-
-            .toggle {
-                display: block;
-            }
-
-            .nav-menu {
-                position: fixed;
-                top: 70px;
-                left: -100%;
-                width: 100%;
-                height: calc(100vh - 70px);
-                background: var(--header-bg);
-                backdrop-filter: blur(10px);
-                flex-direction: column;
-                align-items: center;
-                justify-content: flex-start;
-                padding-top: 50px;
-                gap: 30px;
-                transition: left 0.3s ease;
-                z-index: 999;
-            }
-
-            .nav-menu.active {
-                left: 0;
-            }
-
-            .nav-item a {
-                font-size: 1.3em;
-            }
-
-            .theme-preview {
-                margin-left: 10px;
-                gap: 5px;
-            }
-
-            .color-dot {
-                width: 25px;
-                height: 25px;
-            }
-
-            .main-container {
-                padding: 0 15px;
-                margin-top: 80px;
-            }
-
-            h2 {
-                font-size: 1.5em;
-            }
-
-            .projects-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-
-            .terminal-window {
-                padding: 20px;
-            }
-
-            .tech-stack-container {
-                gap: 8px;
-            }
-
-            .skill {
-                padding: 6px 10px;
-            }
-
-            .skill img {
-                width: 20px;
-                height: 20px;
-            }
-
-            .skill span {
-                font-size: 0.85em;
-            }
-        }
-
-        @media only screen and (min-width: 769px) and (max-width: 1024px) {
-            .projects-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-    </style>
+    
+    <!-- External CSS -->
+    <link rel="stylesheet" href="projects.css">
 </head>
-
-<body data-theme="dark">
+<body>
     <!-- Header Section -->
     <header class="header">
         <a href="https://comnsense.github.io" class="header-logo">@HelloWorld</a>
         
         <nav class="nav">
+            <div class="toggle"><i class="fas fa-bars"></i></div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="https://comnsense.github.io/">About@Me</a></li>
+ 
+                <li class="nav-item"><a href="https://comnsense.github.io/schety.html">Accounting</a></li>
+                <li class="nav-item"><a href="https://comnsense.github.io/Annex/application.html">Education</a></li>
+            </ul>
             <div class="theme-preview">
                 <div class="color-dot dot-dark" onclick="setTheme('dark')" title="Dark Theme"></div> 
-                <div class="color-dot dot-light" onclick="setTheme('light')" title="Light Theme"></div>
+                <div class="color-dot dot-light active" onclick="setTheme('light')" title="Light Theme"></div>
             </div>
         </nav>
     </header>
@@ -725,9 +62,8 @@
 
             <div class="projects-grid">
                 <!-- Website - CV -->
-
-               <section> <div class="project-card">
-                    <img src="./img/cv-resume.jpeg" alt="Website Main" class="project-preview-img" onerror="this.style.display='none'; this.parentElement.querySelector('.image-fallback').style.display='flex';">
+                <div class="project-card">
+                    <img src="./img/cv-resume.jpeg" alt="CV Resume" class="project-preview-img" onerror="this.style.display='none'; this.parentElement.querySelector('.image-fallback').style.display='flex';">
                     <div class="image-fallback">
                         <i class="fas fa-laptop-code"></i>
                     </div>
@@ -749,24 +85,23 @@
                             </a>
                         </div>
                     </div>
-                </div></section>
+                </div>
 
-               
                 <!-- Website - Main Project -->
-               <section> <div class="project-card">
-                    <img src="./img/projects.jpg" alt="Website Main" class="project-preview-img" onerror="this.style.display='none'; this.parentElement.querySelector('.image-fallback').style.display='flex';">
+                <div class="project-card">
+                    <img src="./img/projects.jpg" alt="Projects Main" class="project-preview-img" onerror="this.style.display='none'; this.parentElement.querySelector('.image-fallback').style.display='flex';">
                     <div class="image-fallback">
                         <i class="fas fa-laptop-code"></i>
                     </div>
                     <div class="card-info">
-                        <h3 class="project-title">Website -  Portfolio</h3>
+                        <h3 class="project-title">Website - Portfolio</h3>
                         <div class="project-skills">
                             <span class="skill-tag">HTML5</span>
                             <span class="skill-tag">CSS3</span>
                             <span class="skill-tag">JavaScript</span>
                             <span class="skill-tag">Responsive</span>
                         </div>
-                        <p class="item-details">Main projects</p>
+                        <p class="item-details">Main projects page</p>
                         <div class="project-links">
                             <a href="https://comnsense.github.io/Projects/" target="_blank" rel="noopener">
                                 <i class="fas fa-external-link-alt"></i> Overview
@@ -776,31 +111,32 @@
                             </a>
                         </div>
                     </div>
-                </div> </section>
-               
+                </div>
+
                 <!-- Accounting Practice -->
-                <section> <div class="project-card">
-                    <img src="./img/schety.jpg" alt="Website Main" class="project-preview-img" onerror="this.style.display='none'; this.parentElement.querySelector('.image-fallback').style.display='flex';">
+                <div class="project-card">
+                    <img src="./img/schety.jpg" alt="Accounting Practice" class="project-preview-img" onerror="this.style.display='none'; this.parentElement.querySelector('.image-fallback').style.display='flex';">
                     <div class="image-fallback">
-                        <i class="fas fa-laptop-code"></i>
+                        <i class="fas fa-calculator"></i>
                     </div>
                     <div class="card-info">
                         <h3 class="project-title">Accounting Practice</h3>
-
+                        <div class="project-skills">
+                            <span class="skill-tag">HTML5</span>
+                            <span class="skill-tag">CSS3</span>
+                            <span class="skill-tag">JavaScript</span>
+                        </div>
                         <p class="item-details">Detailed description of accounting experience</p>
                         <div class="project-links">
                             <a href="https://comnsense.github.io/schety.html" target="_blank" rel="noopener">
                                 <i class="fas fa-external-link-alt"></i> Overview
                             </a>
-                           
                         </div>
                     </div>
-                </div> </section> 
-
+                </div>
 
                 <!-- AppSheet Project -->
-            
-             <section> <div class="project-card">
+                <div class="project-card">
                     <div class="card-info">
                         <h3 class="project-title">Application Bulgarian Chinese Chamber for Industrial Development (BCCID)</h3>
                         <div class="project-skills">
@@ -819,32 +155,32 @@
                             </a>
                         </div>
                     </div>
-                </div></section>  
-
+                </div>
 
                 <!-- Diploma Application -->
-                <section> <div class="project-card">
-                    <img src="./img/Annex.jpg" alt="Website Main" class="project-preview-img" onerror="this.style.display='none'; this.parentElement.querySelector('.image-fallback').style.display='flex';">
+                <div class="project-card">
+                    <img src="./img/Annex.jpg" alt="Diploma Application" class="project-preview-img" onerror="this.style.display='none'; this.parentElement.querySelector('.image-fallback').style.display='flex';">
                     <div class="image-fallback">
-                        <i class="fas fa-laptop-code"></i>
+                        <i class="fas fa-graduation-cap"></i>
                     </div>
                     <div class="card-info">
                         <h3 class="project-title">Diploma Application</h3>
-
-                        <p class="item-details">Completed courses</p>
+                        <div class="project-skills">
+                            <span class="skill-tag">HTML5</span>
+                            <span class="skill-tag">CSS3</span>
+                            <span class="skill-tag">JavaScript</span>
+                        </div>
+                        <p class="item-details">Completed courses and academic achievements</p>
                         <div class="project-links">
                             <a href="https://comnsense.github.io/Thesis%20application.html" target="_blank" rel="noopener">
                                 <i class="fas fa-external-link-alt"></i> Overview
                             </a>
-                           
                         </div>
                     </div>
-                </div></section>
-
-
+                </div>
 
                 <!-- Thesis Project -->
-               <selection>  <div class="project-card">
+                <div class="project-card">
                     <img src="./img/thesis.jpg" alt="Thesis Project" class="project-preview-img" onerror="this.style.display='none'; this.parentElement.querySelector('.image-fallback').style.display='flex';">
                     <div class="image-fallback">
                         <i class="fas fa-brain"></i>
@@ -868,14 +204,9 @@
                             </a>
                         </div>
                     </div>
-                </div> </selection>
+                </div>
 
-
-
-
-
-
-  <!-- Blog Theme Project -->
+                <!-- Blog Theme Project -->
                 <div class="project-card">
                     <img src="./img/tumblr-theme.jpeg" alt="Blog Theme" class="project-preview-img" onerror="this.style.display='none'; this.parentElement.querySelector('.image-fallback').style.display='flex';">
                     <div class="image-fallback">
@@ -888,7 +219,7 @@
                             <span class="skill-tag">CSS3</span>
                             <span class="skill-tag">JavaScript</span>
                         </div>
-                        <p class="item-details">Custom blog theme </p>
+                        <p class="item-details">Custom blog theme</p>
                         <div class="project-links">
                             <a href="https://mumblrtum.tumblr.com/" target="_blank" rel="noopener">
                                 <i class="fas fa-external-link-alt"></i> Overview
@@ -899,6 +230,7 @@
                         </div>
                     </div>
                 </div>
+
                 <!-- Tic Tac Toe -->
                 <div class="project-card">
                     <img src="./img/tic-tac-toe.gif" alt="Tic Tac Toe Game" class="project-preview-img" onerror="this.style.display='none'; this.parentElement.querySelector('.image-fallback').style.display='flex';">
@@ -923,8 +255,7 @@
                     </div>
                 </div>
 
-
-                 <!-- Halloween Project -->
+                <!-- Halloween Project -->
                 <div class="project-card">
                     <img src="./img/HelloweenApp.jpg" alt="Halloween Website" class="project-preview-img" onerror="this.style.display='none'; this.parentElement.querySelector('.image-fallback').style.display='flex';">
                     <div class="image-fallback">
@@ -939,16 +270,15 @@
                         </div>
                         <p class="item-details">Web-Design project with thematic design.</p>
                         <div class="project-links">
-                            <a href="https://comnsense.github.io/Web-Design-Final/index" target="_blank" rel="noopener">
+                            <a href="https://comnsense.github.io/Projects/Halloween%20Website" target="_blank" rel="noopener">
                                 <i class="fas fa-external-link-alt"></i> Demo
                             </a>
-                            <a href="https://github.com/comnsense/Web-Design-Final/" target="_blank" rel="noopener">
+                            <a href="https://github.com/comnsense/Projects/tree/main/Halloween%20Website" target="_blank" rel="noopener">
                                 <i class="fab fa-github"></i> GitHub
                             </a>
                         </div>
                     </div>
                 </div>
-
             </div>
         </section>
 
@@ -1015,7 +345,7 @@
                 </div>  
                 
                 <div class="skill">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub Pages">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub">
                     <span>GitHub</span>
                 </div>
 
@@ -1042,7 +372,7 @@
                 </div>
                             
                 <div class="skill">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg" alt="AWS">
+                    <span class="material-icons">cloud</span>
                     <span>AWS</span>
                 </div>
 
@@ -1062,7 +392,6 @@
                     <span>Zendesk</span>
                 </div>
 
-
                 <!-- Operating Systems -->
                 <div class="skill">
                     <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/windows8/windows8-original.svg" alt="Windows">
@@ -1075,33 +404,6 @@
                 </div>
             </div>
         </section>
-        
-        <!-- Terminal Container / About Section -->
-        <div class="terminal-container">
-            <div class="terminal-header">
-                <div id="terminal-title">A Little Bit About Me</div>
-                <div class="right-side-buttons">
-                    <i class="fas fa-window-minimize"></i>
-                    <i class="fas fa-window-restore"></i>
-                    <i class="fas fa-window-close"></i>
-                </div>
-            </div>
-            <div class="terminal-window">
-                <div class="statement">
-                    <p class="input">my.story</p>
-                    <p class="return">My journey into tech started with curiosity and a desire to build things that matter. I taught myself to code while working, driven by the belief that technology should solve real problems. Today, I'm a Computer Science student who approaches development with both analytical thinking and creative problem-solving. I work with full-stack development using JavaScript, TypeScript, Node.js, and .NET, but I'm always eager to explore new technologies. With over 3 years of experience in user support and business communication, I've learned how important data management and analysis really are. From helping small businesses organize their finances to optimizing workflows for better efficiency – I solve problems that save time, reduce errors, and make sense of complex information.</p>
-                </div>
-         
-                <div class="statement">
-                    <p class="input">how.can.i.help.you?</p>
-                    <p class="return"><a href="mailto:comnsense17@gmail.com" class="green">Let's talk →</a></p>
-                </div>
-           
-                <div class="statement">
-                    <p class="input bottom"><span></span></p>
-                </div>
-            </div>
-        </div>
     </main>
 
     <!-- Footer -->
@@ -1137,80 +439,8 @@
         </div>
     </footer>
 
-    <!-- JavaScript -->
-    <script>
-        // Theme switching function
-        function setTheme(themeName) {
-            document.body.setAttribute('data-theme', themeName);
-            localStorage.setItem('selectedTheme', themeName);
-            
-            const colorDots = document.querySelectorAll('.color-dot');
-            colorDots.forEach(dot => dot.classList.remove('active'));
-            
-            const activeDot = document.querySelector(`.dot-${themeName}`);
-            if (activeDot) activeDot.classList.add('active');
-        }
-        
-        // Load saved theme
-        function loadSavedTheme() {
-            const savedTheme = localStorage.getItem('selectedTheme') || 'dark';
-            setTheme(savedTheme);
-        }
-        
-        // Handle image errors and show fallbacks
-        document.addEventListener('DOMContentLoaded', function() {
-            loadSavedTheme();
-            
-            // Handle project images
-            const projectImages = document.querySelectorAll('.project-preview-img');
-            projectImages.forEach(img => {
-                img.addEventListener('error', function() {
-                    this.style.display = 'none';
-                    const fallback = this.parentElement.querySelector('.image-fallback');
-                    if (fallback) {
-                        fallback.style.display = 'flex';
-                    }
-                });
-            });
-            
-            // Handle tech stack images with CDN fallback
-            const techImages = document.querySelectorAll('.skill img');
-            techImages.forEach(img => {
-                img.addEventListener('error', function() {
-                    const parent = this.parentElement;
-                    const techName = this.alt;
-                    
-                    const iconMap = {
-                        'HTML5': 'code',
-                        'CSS3': 'palette',
-                        'Tailwind CSS': 'style',
-                        'JavaScript': 'javascript',
-                        'React': 'code',
-                        'Node.js': 'settings',
-                        'Express': 'bolt',
-                        'Bash': 'terminal',
-                        'Babel': 'transform',
-                        'npm': 'folder',
-                        'Git': 'share',
-                        'GitHub Pages': 'cloud',
-                        'WordPress': 'web',
-                        'Canva': 'brush',
-                        'Photoshop': 'brush',
-                        'Firebase': 'storage',
-                        'AWS': 'cloud',
-                        'Google Cloud': 'cloud',
-                        'Salesforce': 'cloud',
-                        'Windows': 'window',
-                        'Unix/Linux': 'terminal'
-                    };
-                    
-                    parent.innerHTML = `
-                        <span class="material-icons">${iconMap[techName] || 'code'}</span>
-                        <span>${techName}</span>
-                    `;
-                });
-            });
-        });
-    </script>
+    <!-- External JavaScript -->
+    <script src="projects.js"></script>
 </body>
 </html>
+
