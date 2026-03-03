@@ -1,0 +1,7 @@
+# Пренасочване от стария GitHub Projects
+/Projects/*    https://comnsenseprojects.netlify.app/:splat    301
+/*             https://comnsenseprojects.netlify.app/          301
+
+# Конкретни пренасочвания (ако имате нужда)
+/tic-tac-toe   https://comnsenseprojects.netlify.app/tic-tac-toe    301
+/Halloween-Website https://comnsenseprojects.netlify.app/halloween-website 301
