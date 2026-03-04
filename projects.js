@@ -1,320 +1,359 @@
-// Theme switching function
-function setTheme(themeName) {
-    document.body.setAttribute('data-theme', themeName);
-    localStorage.setItem('selectedTheme', themeName);
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects 2022-26 | comnsense</title>
     
-    const colorDots = document.querySelectorAll('.color-dot');
-    colorDots.forEach(dot => dot.classList.remove('active'));
-    
-    const activeDot = document.querySelector(`.dot-${themeName}`);
-    if (activeDot) activeDot.classList.add('active');
-}
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
 
-// Load saved theme
-function loadSavedTheme() {
-    const savedTheme = localStorage.getItem('selectedTheme') || 'dark';
-    setTheme(savedTheme);
-}
-
-// Handle image errors and show fallbacks
-function handleImageErrors() {
-    // Handle project images
-    const projectImages = document.querySelectorAll('.project-preview-img');
-    projectImages.forEach(img => {
-        img.addEventListener('error', function() {
-            this.style.display = 'none';
-            const fallback = this.parentElement.querySelector('.image-fallback');
-            if (fallback) {
-                fallback.style.display = 'flex';
-            }
-        });
-    });
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:title" content="Projects 2022-26">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://comnsense.github.io/projects">
+    <meta property="og:description" content="Web development projects and applications">
     
-    // Handle tech stack images with CDN fallback
-    const techImages = document.querySelectorAll('.skill img');
-    techImages.forEach(img => {
-        img.addEventListener('error', function() {
-            const parent = this.parentElement;
-            const techName = this.alt;
-            
-            const iconMap = {
-                'HTML5': 'code',
-                'CSS3': 'palette',
-                'Tailwind CSS': 'style',
-                'JavaScript': 'javascript',
-                'React': 'code',
-                'Node.js': 'settings',
-                'Express': 'bolt',
-                'Bash': 'terminal',
-                'Babel': 'transform',
-                'npm': 'folder',
-                'Git': 'share',
-                'GitHub Pages': 'cloud',
-                'WordPress': 'web',
-                'Canva': 'brush',
-                'Photoshop': 'brush',
-                'Firebase': 'storage',
-                'AWS': 'cloud',
-                'Google Cloud': 'cloud',
-                'Salesforce': 'cloud',
-                'Windows': 'window',
-                'Unix/Linux': 'terminal'
-            };
-            
-            parent.innerHTML = `
-                <span class="material-icons">${iconMap[techName] || 'code'}</span>
-                <span>${techName}</span>
-            `;
-        });
-    });
-}
-
-// Mobile menu toggle functionality
-function initMobileMenu() {
-    const toggleBtn = document.querySelector('.toggle');
-    const navMenu = document.querySelector('.nav-menu');
+    <!-- Canonical Link -->
+    <link rel="canonical" href="https://comnsense.github.io/projects">
     
-    if (toggleBtn && navMenu) {
-        toggleBtn.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-            
-            // Change icon based on menu state
-            const icon = toggleBtn.querySelector('i');
-            if (icon) {
-                if (navMenu.classList.contains('active')) {
-                    icon.className = 'fas fa-times';
-                } else {
-                    icon.className = 'fas fa-bars';
-                }
-            }
-        });
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Fira+Code:wght@400;500&family=Fira+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+    <!-- External CSS - обединен -->
+    <link rel="stylesheet" href="projects.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <a href="https://comnsense.github.io" class="header-logo">@HelloWorld</a>
         
-        // Close menu when clicking on a link
-        const navLinks = navMenu.querySelectorAll('a');
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('active');
-                const icon = toggleBtn.querySelector('i');
-                if (icon) {
-                    icon.className = 'fas fa-bars';
-                }
-            });
-        });
-    }
-}
+        <nav class="nav">
+            <div class="toggle"><i class="fas fa-bars"></i></div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="https://comnsense.github.io/">About@Me</a></li>
+                <li class="nav-item"><a href="https://comnsense.github.io/schety.html">Accounting</a></li>
+                <li class="nav-item"><a href="https://comnsense.github.io/Annex/application.html">Education</a></li>
+            </ul>
+            <div class="theme-preview">
+                <div class="color-dot dot-dark" onclick="setTheme('dark')" title="Dark Theme"></div> 
+                <div class="color-dot dot-light active" onclick="setTheme('light')" title="Light Theme"></div>
+            </div>
+        </nav>
+    </header>
 
-// Animation on scroll
-function initScrollAnimations() {
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-    
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }
-        });
-    }, observerOptions);
-    
-    // Apply animations to project cards, skills, and office cards
-    document.querySelectorAll('.project-card, .skill, .office-skill-card, .skill-category').forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(20px)';
-        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        observer.observe(el);
-    });
-}
+    <!-- Main Content -->
+    <main class="main-container">
+        <!-- Projects Section -->
+        <section id="projects">
+            <h2 class="card-title">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%238bc34a' stroke-width='2'%3E%3Cpolyline points='16 18 22 12 16 6'%3E%3C/polyline%3E%3Cpolyline points='8 6 2 12 8 18'%3E%3C/polyline%3E%3C/svg%3E" alt="Code icon">
+                Projects & Development
+            </h2>
 
-// Add active state to theme dots
-function initThemeDots() {
-    const darkDot = document.querySelector('.dot-dark');
-    const lightDot = document.querySelector('.dot-light');
-    
-    if (darkDot) {
-        darkDot.addEventListener('click', () => setTheme('dark'));
-    }
-    
-    if (lightDot) {
-        lightDot.addEventListener('click', () => setTheme('light'));
-    }
-}
-
-// Load courses data
-function loadCoursesData() {
-    const coursesData = [
-        { bg: "Въведение в предприемачеството", en: "Introduction to Entrepreneurship" },
-        { bg: "Въведение в компютърните науки", en: "Introduction to Computer Science" },
-        { bg: "Компютърни архитектури", en: "Computer Architectures" },
-        { bg: "Линейна алгебра и аналитична геометрия", en: "Linear Algebra & Analytic Geometry" },
-        { bg: "Академично писане", en: "Academic Writing" },
-        { bg: "Програмиране", en: "Programming" },
-        { bg: "Операционни системи", en: "Operating Systems" },
-        { bg: "Уеб технологии", en: "Web Technologies" },
-        { bg: "Математически анализ", en: "Mathematical Analysis" },
-        { bg: "ИТ средства за анализ на данни", en: "IT Tools for Data Analysis" },
-        { bg: "Обектно-ориентирано програмиране", en: "Object-Oriented Programming" },
-        { bg: "Структури от данни и алгоритми", en: "Data Structures & Algorithms" },
-        { bg: "Потребителски интерфейси и използваемост", en: "User Interfaces & Usability" },
-        { bg: "Компютърни мрежи и комуникации", en: "Computer Networks & Communications" },
-        { bg: "Математически основи на информатиката", en: "Mathematical Foundations of Informatics" },
-        { bg: "Бази данни", en: "Databases" },
-        { bg: "Вероятности и статистика", en: "Probability & Statistics" },
-        { bg: "Програмиране с PHP", en: "Programming with PHP" },
-        { bg: "Техники на програмиране", en: "Programming Techniques" },
-        { bg: "3D моделиране и принтиране", en: "3D Modeling & Printing" },
-        { bg: "JavaScript технологии", en: "JavaScript Technologies" },
-        { bg: "Въведение в микроконтролерите", en: "Introduction to Microcontrollers" },
-        { bg: "Компютърна графика", en: "Computer Graphics" },
-        { bg: "Програмиране с Python", en: "Programming with Python" },
-        { bg: "Криптография", en: "Cryptography" },
-        { bg: "Въведение в мениджмънта", en: "Introduction to Management" },
-        { bg: "Софтуерно инженерство", en: "Software Engineering" },
-        { bg: "Разработка на мобилни приложения", en: "Mobile App Development" },
-        { bg: "Психология на интелекта", en: "Psychology of Intelligence" },
-        { bg: "Киберсигурност", en: "Cybersecurity" },
-        { bg: "Уеб услуги и облачни технологии", en: "Web Services & Cloud Technologies" },
-        { bg: "Анимация в уеб", en: "Web Animation" },
-        { bg: "Функционално програмиране", en: "Functional Programming" },
-        { bg: "Управление на бизнес процеси", en: "Business Process Management" },
-        { bg: "Софтуерни архитектури", en: "Software Architectures" },
-        { bg: "Научноизследователски стаж", en: "Research Internship" },
-        { bg: "Интелигентни системи", en: "Intelligent Systems" },
-        { bg: "Електронен бизнес", en: "E-business" },
-        { bg: "Мултимедийни системи – практикум", en: "Multimedia Systems – practicum" },
-        { bg: "Уеб дизайн – практикум", en: "Web Design – practicum" },
-        { bg: "Операционни системи /практикум/", en: "Operating Systems practicum" },
-        { bg: "Невронауки", en: "Neurosciences" },
-        { bg: "Преддипломна практика/стаж", en: "Pre-graduation internship" }
-    ];
-
-    const tbody = document.getElementById('courses-table-body');
-    if (tbody) {
-        coursesData.forEach(c => {
-            const row = document.createElement('tr');
-            row.innerHTML = `<td>${c.bg}</td><td>${c.en}</td>`;
-            tbody.appendChild(row);
-        });
-    }
-}
-
-// Load office skills data
-function loadOfficeSkills() {
-    const officeSkills = [
-        { 
-            name: "BulMar Office", 
-            description: "Счетоводство+, ТРЗ - счетоводен софтуер", 
-            icon: "fa-calculator", 
-            link: "https://bulmar.com/bg/accounting-software" 
-        },
-        { 
-            name: "Кредо 2000", 
-            description: "ERP система за счетоводство и управление", 
-            icon: "fa-database", 
-            link: "#" 
-        },
-        { 
-            name: "MS Office", 
-            description: "Excel, Word, Outlook, PowerPoint", 
-            icon: "fa-file-excel", 
-            link: "#" 
-        },
-        { 
-            name: "Google Workspace", 
-            description: "Gmail, Drive, Docs, Sheets, Calendar, Meet", 
-            icon: "fa-cloud", 
-            link: "#" 
-        },
-        { 
-            name: "Google Analytics", 
-            description: "Анализ на уеб трафик, проследяване на посетители, поведенчески анализи, GA4 конфигурация", 
-            icon: "fa-chart-line", 
-            link: "#" 
-        },
-        { 
-            name: "CRM Системи", 
-            description: "Управление на клиентски взаимоотношения и продажби", 
-            icon: "fa-handshake", 
-            link: "#" 
-        }
-    ];
-
-    const container = document.getElementById('officeSkillsContainer');
-    if (container) {
-        officeSkills.forEach(skill => {
-            const card = document.createElement('div');
-            card.className = 'office-skill-card';
-            const linkHref = skill.link && skill.link !== '#' ? skill.link : '#';
-            card.innerHTML = `
-                <div class="office-skill-header">
-                    <div class="office-skill-icon"><i class="fas ${skill.icon}"></i></div>
-                    <h3 class="office-skill-name">${skill.name}</h3>
+            <div class="projects-grid">
+                <!-- Website - CV -->
+                <div class="project-card">
+                    <img src="./img/cv-resume.jpeg" alt="CV Resume" class="project-preview-img" onerror="this.style.display='none'; this.parentElement.querySelector('.image-fallback').style.display='flex';">
+                    <div class="image-fallback">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="project-title">CV - Resume</h3>
+                        <div class="project-skills">
+                            <span class="skill-tag">HTML5</span>
+                            <span class="skill-tag">CSS3</span>
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">Responsive</span>
+                        </div>
+                        <p class="item-details">Main portfolio website with CV and projects</p>
+                        <div class="project-links">
+                            <a href="https://comnsense.github.io/" target="_blank" rel="noopener">
+                                <i class="fas fa-external-link-alt"></i> Overview
+                            </a>
+                            <a href="https://github.com/comnsense/comnsense.github.io" target="_blank" rel="noopener">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
                 </div>
-                <p class="office-skill-description">${skill.description}</p>
-                <a href="${linkHref}" class="office-skill-link" target="${linkHref !== '#' ? '_blank' : '_self'}">
-                    <span>Научете повече</span> <i class="fas fa-arrow-right"></i>
-                </a>
-            `;
-            container.appendChild(card);
-        });
-    }
-}
 
-// Add smooth scrolling for anchor links
-function initSmoothScroll() {
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        });
-    });
-}
+                <!-- Website - Main Project -->
+                <div class="project-card">
+                    <img src="./img/projects.jpg" alt="Projects Main" class="project-preview-img" onerror="this.style.display='none'; this.parentElement.querySelector('.image-fallback').style.display='flex';">
+                    <div class="image-fallback">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="project-title">Website - Portfolio</h3>
+                        <div class="project-skills">
+                            <span class="skill-tag">HTML5</span>
+                            <span class="skill-tag">CSS3</span>
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">Responsive</span>
+                        </div>
+                        <p class="item-details">Main projects page</p>
+                        <div class="project-links">
+                            <a href="https://comnsense.github.io/Projects/" target="_blank" rel="noopener">
+                                <i class="fas fa-external-link-alt"></i> Overview
+                            </a>
+                            <a href="https://github.com/comnsense/Projects" target="_blank" rel="noopener">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
 
-// Handle window resize
-function handleResize() {
-    if (window.innerWidth > 768) {
-        const navMenu = document.querySelector('.nav-menu');
-        if (navMenu && navMenu.classList.contains('active')) {
-            navMenu.classList.remove('active');
-            const toggleBtn = document.querySelector('.toggle i');
-            if (toggleBtn) {
-                toggleBtn.className = 'fas fa-bars';
-            }
-        }
-    }
-}
+                <!-- Accounting Practice -->
+                <div class="project-card">
+                    <img src="./img/schety.jpg" alt="Accounting Practice" class="project-preview-img" onerror="this.style.display='none'; this.parentElement.querySelector('.image-fallback').style.display='flex';">
+                    <div class="image-fallback">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="project-title">Accounting Practice</h3>
+                        <div class="project-skills">
+                            <span class="skill-tag">HTML5</span>
+                            <span class="skill-tag">CSS3</span>
+                            <span class="skill-tag">JavaScript</span>
+                        </div>
+                        <p class="item-details">Detailed description of accounting experience</p>
+                        <div class="project-links">
+                            <a href="https://comnsense.github.io/schety.html" target="_blank" rel="noopener">
+                                <i class="fas fa-external-link-alt"></i> Overview
+                            </a>
+                        </div>
+                    </div>
+                </div>
 
-// Initialize everything on DOM load
-document.addEventListener('DOMContentLoaded', function() {
-    loadSavedTheme();
-    handleImageErrors();
-    initMobileMenu();
-    initScrollAnimations();
-    initThemeDots();
-    initSmoothScroll();
-    loadCoursesData();
-    loadOfficeSkills();
-    
-    // Add image paths for fallback (if needed)
-    const imagePaths = {
-        'cv-resume': './img/cv-resume.jpeg',
-        'projects': './img/projects.jpg',
-        'schety': './img/schety.jpg',
-        'annex': './img/Annex.jpg',
-        'thesis': './img/thesis.jpg',
-        'tumblr-theme': './img/tumblr-theme.jpeg',
-        'tic-tac-toe': './img/tic-tac-toe.gif',
-        'halloween': './img/HelloweenApp.jpg'
-    };
-});
+                <!-- AppSheet Project -->
+                <div class="project-card">
+                    <div class="card-info">
+                        <h3 class="project-title">Application Bulgarian Chinese Chamber for Industrial Development (BCCID)</h3>
+                        <div class="project-skills">
+                            <span class="skill-tag">AppSheet</span>
+                            <span class="skill-tag">Data visualization</span>
+                        </div>
+                        <div class="item-details">
+                            <ul>
+                                <li>Manage members, customers, and payments for services</li>
+                                <li>Process optimization through data visualization</li>
+                            </ul>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://www.appsheet.com/start/5e82fa28-7112-40f0-ab58-2fba90efe623?platform=desktop" target="_blank" rel="noopener">
+                                <i class="fas fa-external-link-alt"></i> AppSheet
+                            </a>
+                        </div>
+                    </div>
+                </div>
 
-// Handle window resize
-window.addEventListener('resize', handleResize);
+                <!-- Diploma Application -->
+                <div class="project-card">
+                    <img src="./img/Annex.jpg" alt="Diploma Application" class="project-preview-img" onerror="this.style.display='none'; this.parentElement.querySelector('.image-fallback').style.display='flex';">
+                    <div class="image-fallback">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="project-title">Diploma Application</h3>
+                        <div class="project-skills">
+                            <span class="skill-tag">HTML5</span>
+                            <span class="skill-tag">CSS3</span>
+                            <span class="skill-tag">JavaScript</span>
+                        </div>
+                        <p class="item-details">Completed courses and academic achievements</p>
+                        <div class="project-links">
+                            <a href="https://comnsense.github.io/Thesis%20application.html" target="_blank" rel="noopener">
+                                <i class="fas fa-external-link-alt"></i> Overview
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Thesis Project -->
+                <div class="project-card">
+                    <img src="./img/thesis.jpg" alt="Thesis Project" class="project-preview-img" onerror="this.style.display='none'; this.parentElement.querySelector('.image-fallback').style.display='flex';">
+                    <div class="image-fallback">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="project-title">Development of an App for Mental Health Support</h3>
+                        <div class="project-skills">
+                            <span class="skill-tag">Node.js</span>
+                            <span class="skill-tag">Express</span>
+                            <span class="skill-tag">React</span>
+                            <span class="skill-tag">NLP</span>
+                            <span class="skill-tag">AI</span>
+                        </div>
+                        <p class="item-details">Using AI and NLP for analyzing user queries and generating adaptive responses.</p>
+                        <div class="project-links">
+                            <a href="https://comnsense.github.io/thesis.pdf" class="hyperlink" target="_blank">
+                                <i class="fas fa-file-pdf"></i> Thesis
+                            </a>
+                            <a href="https://github.com/comnsense/ai-mental-assistant-app" target="_blank">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Blog Theme Project -->
+                <div class="project-card">
+                    <img src="./img/tumblr-theme.jpeg" alt="Blog Theme" class="project-preview-img" onerror="this.style.display='none'; this.parentElement.querySelector('.image-fallback').style.display='flex';">
+                    <div class="image-fallback">
+                        <i class="fas fa-blog"></i>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="project-title">Blog Theme - MumblrTum</h3>
+                        <div class="project-skills">
+                            <span class="skill-tag">HTML5</span>
+                            <span class="skill-tag">CSS3</span>
+                            <span class="skill-tag">JavaScript</span>
+                        </div>
+                        <p class="item-details">Custom blog theme</p>
+                        <div class="project-links">
+                            <a href="https://mumblrtum.tumblr.com/" target="_blank" rel="noopener">
+                                <i class="fas fa-external-link-alt"></i> Overview
+                            </a>
+                            <a href="https://github.com/comnsense/mumblrtum" target="_blank" rel="noopener">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tic Tac Toe -->
+                <div class="project-card">
+                    <img src="./img/tic-tac-toe.gif" alt="Tic Tac Toe Game" class="project-preview-img" onerror="this.style.display='none'; this.parentElement.querySelector('.image-fallback').style.display='flex';">
+                    <div class="image-fallback">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="project-title">TIC-TAC-TOE Game</h3>
+                        <div class="project-skills">
+                            <span class="skill-tag">HTML5</span>
+                            <span class="skill-tag">CSS3</span>
+                            <span class="skill-tag">JavaScript</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://comnsense.github.io/Tic-Tac-Toe-Game" target="_blank" rel="noopener">
+                                <i class="fas fa-external-link-alt"></i> Demo
+                            </a>
+                            <a href="https://github.com/comnsense/tic-tac-toe" target="_blank" rel="noopener">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Halloween Project -->
+                <div class="project-card">
+                    <img src="./img/HelloweenApp.jpg" alt="Halloween Website" class="project-preview-img" onerror="this.style.display='none'; this.parentElement.querySelector('.image-fallback').style.display='flex';">
+                    <div class="image-fallback">
+                        <i class="fas fa-pumpkin"></i>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="project-title">Halloween Website</h3>
+                        <div class="project-skills">
+                            <span class="skill-tag">HTML5</span>
+                            <span class="skill-tag">CSS3</span>
+                            <span class="skill-tag">Responsive</span>
+                        </div>
+                        <p class="item-details">Web-Design project with thematic design.</p>
+                        <div class="project-links">
+                            <a href="https://comnsense.github.io/Projects/Halloween%20Website" target="_blank" rel="noopener">
+                                <i class="fas fa-external-link-alt"></i> Demo
+                            </a>
+                            <a href="https://github.com/comnsense/Projects/tree/main/Halloween%20Website" target="_blank" rel="noopener">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tech Stack Section -->
+        <div class="resume-card"> 
+            <!-- COURSES TABLE -->
+            <div class="courses-wrapper">
+                <h2 style="margin-top: 0; border-bottom-color: #3f5f97;">📘 Завършени курсове</h2>
+                <div class="courses-scroll">
+                    <table>
+                        <thead><tr><th>Български</th><th>English</th></tr></thead>
+                        <tbody id="courses-table-body"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- TECH STACK section -->
+            <section id="tech-stack">
+                <h2>
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23306788' stroke-width='2'%3E%3Crect x='2' y='3' width='20' height='14' rx='2' ry='2'%3E%3C/rect%3E%3Cline x1='8' y1='21' x2='16' y2='21'%3E%3C/line%3E%3Cline x1='12' y1='17' x2='12' y2='21'%3E%3C/line%3E%3C/svg%3E" alt="">
+                    Tech Stack
+                </h2>
+                <div class="skills-panel" style="justify-content: flex-start;">   
+                    <div class="skill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5"><span>HTML5</span></div>
+                    <div class="skill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3"><span>CSS3</span></div>
+                    
+                    <div class="skill-icons-row">
+                        <img src="https://skillicons.dev/icons?i=js,ts,nodejs,dotnet,react,git" alt="skill icons" />
+                    </div> 
+                    
+                    <div class="skill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js"><span>Node.js</span></div>
+                    <div class="skill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" alt="Express"><span>Express</span></div>
+                    <div class="skill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bash/bash-original.svg" alt="Bash"><span>Bash</span></div>
+                    <div class="skill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/npm/npm-original-wordmark.svg" alt="npm"><span>npm</span></div>
+                    <div class="skill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/babel/babel-original.svg" alt="Babel"><span>Babel</span></div>
+                    <div class="skill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" alt="Tailwind CSS"><span>Tailwind</span></div>
+                    <div class="skill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub"><span>GitHub</span></div>   
+                    <div class="skill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" alt="Firebase"><span>Firebase</span></div>
+                </div>
+            </section>
+
+            <!-- SKILLS GRID: категории -->
+            <section style="margin-top: 1rem;">
+                <h2 class="card-title">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23306788' stroke-width='2'%3E%3Cpath d='M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z'%3E%3C/path%3E%3C/svg%3E" alt="">
+                    Умения
+                </h2>
+                <div class="skills-grid">
+                    <!-- CMS & дизайн -->
+                    <div class="skill-category">
+                        <h4>📐 CMS & дизайн</h4>
+                        <div class="skill-tags">
+                            <span class="skill-tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/wordpress/wordpress-original.svg" alt="WP">WordPress</span>
+                            <span class="skill-tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/canva/canva-original.svg" alt="Canva">Canva</span>
+                            <span class="skill-tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/photoshop/photoshop-original.svg" alt="PS">Photoshop</span>
+                            <span class="skill-tag"><span class="material-icons" style="font-size:1.2rem;">brush</span>Figma</span>
+                        </div>
+                    </div>
+
+                    <!-- CLOUD & PLATFORM SKILLS -->
+                    <div class="skill-category">
+                        <h4>☁️ Cloud & OS</h4>
+                        <div class="skill-tags">
+                            <span class="skill-tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/windows8/windows8-original.svg" alt="Windows">Windows</span>
+                            <span class="skill-tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Unix/Linux">Unix</span>
+                        </div>
+                    </div>
+
+                    <!-- CRM и бизнес -->
+                    <div class="skill-category">
+                        <h4>📊 CRM и бизнес</h4>
+                        <div class="skill-tags">
+                            <span class="skill-tag">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/salesforce/salesforce-original.svg" alt="Salesforce" style="width:20px; height:20px;">Salesforce
+                            </span>
+                            <span class="skill-tag">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg" alt="Google Cloud" style="width:20px; height:20px;">Google Cloud
+                            </span>
+                            <span class
