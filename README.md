@@ -1,4 +1,4 @@
 # Projects
 
-https://comnsenseprojects.netlify.app/
-https://cvreactapp.vercel.app/
+- https://comnsenseprojects.netlify.app/
+- https://cvreactapp.vercel.app/
